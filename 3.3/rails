@@ -18,7 +18,6 @@ module Rails
                 :pid => File.expand_path("tmp/pids/server.pid"),
                 :config => File.expand_path("config.ru"),
                 :SSLEnable => true,
-                :SSLVerifyClient => OpenSSL::SSL::VERIFY_PEER,
                 :SSLPrivateKey => OpenSSL::PKey::RSA.new(File.read('/usr/src/redmine/ssl/private/domain.key'), ''),
                 :SSLCertificate => OpenSSL::X509::Certificate.new(File.read('/usr/src/redmine/ssl/certs/domain.crt')),
                 :SSLCACertificateFile => '/usr/src/redmine/ssl/certs/intermediate.pem',
