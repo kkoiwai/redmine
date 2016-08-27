@@ -75,10 +75,16 @@ RUN buildDeps='\
 	&& rm ./config/database.yml \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+RUN apt-get update && apt-get install -y --no-install-recommends vim-tiny
 
 VOLUME /usr/src/redmine/files
 
 COPY docker-entrypoint.sh /
+COPY rails /usr/src/redmine/bin
+COPY domain.crt /usr/src/redmine/ssl/certs/
+COPY intermediate.pem /usr/src/redmine/ssl/certs/
+COPY domain.key /usr/src/redmine/ssl/private/
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 3000
